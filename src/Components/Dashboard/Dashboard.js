@@ -7,8 +7,8 @@ import { Outlet } from 'react-router-dom';
 
 const user = {
   name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy1uZTBlxjOfVEiZsIt9FSo_bkxgEb6_OslQ&s',
+  email: 'Sales manager',
+  imageUrl: 'https://cdn.iconscout.com/icon/free/png-256/free-avatar-380-456332.png',
 };
 
 const navigation = [
