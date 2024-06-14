@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bacraund{
+  background-color: rgba(1, 6, 28, 0.865);
+  block-size:700px ;
+
+
+}
+
+.profil-m{
+	background-color: #ffffff;
+	
+}
+
