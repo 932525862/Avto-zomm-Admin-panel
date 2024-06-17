@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const Brends = () => {
+function Brends() {
   return (
 	<div>Brends</div>
   )
 }
+
+export default Brends

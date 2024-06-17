@@ -4,14 +4,26 @@
 
 
 .bacraund{
-  background-color: rgba(1, 6, 28, 0.865);
+ background-color: rgb(17 24 39 / var(--tw-bg-opacity));
   block-size:700px ;
-
+  width: 180px;
 
 }
 
 .profil-m{
-	background-color: #ffffff;
+	background-color: #bcf4edc1;
 	
 }
 
+.dashwith{
+	width: 180px;
+}
+
+
+.h-full {
+	width: 190px;
+} 
+.bnz{
+	background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+
+}

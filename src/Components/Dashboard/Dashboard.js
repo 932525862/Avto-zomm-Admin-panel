@@ -32,18 +32,19 @@ function classNames(...classes) {
 
 export const Dashboarda = () => {
   return (
-    <div className="min-h-full flex">
-      <Disclosure as="nav" className="bg-gray-800 w-64">
+    <div className="min-h-full flex dashbac">
+      <Disclosure as="nav" className="bg-gray-800 w-48">
         {({ open }) => (
           <>
-            <div className="flex flex-col h-full">
-              <div className="flex items-center justify-center bg-gray-900 h-16">
+            <div className="flex flex-col h-full  bnz">
+              <div className="flex items-center justify-center bg-gray-900 h-16 dashwith">
                 <img
                   className="h-8 w-8"
                   src="https://autozoomrental.com/static/media/logo1.cd0ee2ea64bdb4e351d6eb2c72171d12.svg"
                   alt="Your Company"
                 />
               </div>
+			  
               <div className="flex-grow profil-mn">
                 <div className="px-2 pt-5 pb-3 space-y-1 bacraund">
                   {navigation.map((item) => (
@@ -84,6 +85,7 @@ export const Dashboarda = () => {
                 <BellIcon className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
+			
           </div>
         </header>
         <main className="flex-1">
