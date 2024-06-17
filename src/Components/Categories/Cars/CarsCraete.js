@@ -76,13 +76,13 @@ const CarsCreate = ({ closeModal, refreshData }) => {
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 divide-y">
           <div className="bordebray-900/10 pb-12">
-            <h2 className=" border-gtext-base font-semibold leading-7 text-gray-900">
+            <h2 className=" border-gtext-base font-semibold leading-7 text-gray-900 gmg">
               Create New Car
             </h2>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
+            <p className="mt-1 text-sm leading-6 text-gray-600 bmmb">
               When creating a new car, do not forget to fill in all the
               parameters and fill in the data correctly. This information will
-              be displayed publicly so be careful what you share.
+             be displayed publicly so be careful what you share.
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
