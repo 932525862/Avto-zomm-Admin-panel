@@ -80,7 +80,7 @@ function Brands() {
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <img src={brand.image_src} alt={brand.title} className="h-12 w-12 object-contain" />
                   </td>
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <td className=" flex justify-start space-x-2 px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <button
                       onClick={() => handleEdit(brand)}
                       className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
