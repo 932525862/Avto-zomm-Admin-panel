@@ -65,22 +65,22 @@ function Brands() {
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="table-auto w-full">
+          <table className="min-w-full leading-normal ">
             <thead>
               <tr className="bg-gray-200">
-                <th className="px-4 py-2">Name</th>
-                <th className="px-4 py-2">Image</th>
-                <th className="px-4 py-2">Action</th>
+                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
+                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Image</th>
+                <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
             <tbody>
               {brands.map((brand) => (
                 <tr key={brand.id} className="border-b">
-                  <td className="px-4 py-2">{brand.title}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{brand.title}</td>
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <img src={brand.image_src} alt={brand.title} className="h-12 w-12 object-contain" />
                   </td>
-                  <td className="px-4 py-2 flex justify-end space-x-2">
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <button
                       onClick={() => handleEdit(brand)}
                       className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
