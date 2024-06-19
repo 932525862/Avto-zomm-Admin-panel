@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import 'font-awesome/css/font-awesome.min.css';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 
 function Brands() {
   const [brands, setBrands] = useState([]);
@@ -78,20 +78,20 @@ function Brands() {
                 <tr key={brand.id} className="border-b">
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{brand.title}</td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <img src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${brand.image_src} `} alt={brand.title} className="h-12 w-12 object-contain" />
+                    <img src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${brand.image_src} `} alt={brand.title} className="h-14 w-14 object-contain" />
                   </td>
                   <td className=" flex justify-start space-x-2 px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <button
                       onClick={() => handleEdit(brand)}
                       className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                     >
-                      <i className="fas fa-edit"></i>
+                      <FaEdit/>
                     </button>
                     <button
                       onClick={() => handleDelete(brand.id)}
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                     >
-                      <i className="fas fa-trash"></i>
+                      <FaTrash/>
                     </button>
                   </td>
                 </tr>
