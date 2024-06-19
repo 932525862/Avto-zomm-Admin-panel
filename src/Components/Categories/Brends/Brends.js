@@ -78,7 +78,7 @@ function Brands() {
                 <tr key={brand.id} className="border-b">
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">{brand.title}</td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <img src={brand.image_src} alt={brand.title} className="h-12 w-12 object-contain" />
+                    <img src={`https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/${brand.image_src} `} alt={brand.title} className="h-12 w-12 object-contain" />
                   </td>
                   <td className=" flex justify-start space-x-2 px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <button
