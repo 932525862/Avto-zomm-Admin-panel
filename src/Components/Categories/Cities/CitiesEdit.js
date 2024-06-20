@@ -1,10 +1,11 @@
 import { message } from "antd";
 
-const CitiesEdit = (cityId,closeModal,refreshData,data,setData) =>{
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTczNzkzNTUtZDNjYi00NzY1LTgwMGEtNDZhOTU1NWJiOWQyIiwidG9rZW5fdHlwZSI6ImFjY2VzcyIsImlhdCI6MTcxNTAwNjI0OCwiZXhwIjoxNzQ2NTQyMjQ4fQ.uMRbDZduB_z8LXgdTho8kBggg9Zrz6SNCwqmFcas10E';
+const CitiesEdit = ({cityId,closeModal,refreshData,data,setData}) =>{
+  const token = localStorage.getItem('accessToken')
   const editCities = (e) =>{
     e.preventDefault();
     const formData = new FormData()
+    console.log(data,"dattataa")
     formData.append("name",data.name);
     formData.append("text",data.text);
     formData.append("images",data.images);
@@ -18,18 +19,21 @@ const CitiesEdit = (cityId,closeModal,refreshData,data,setData) =>{
     .then(res=>res.json())
     .then(res=>{
       if(res.success){
-        message.success("Ajoyib")
         closeModal();
         refreshData();
+        message.success("Ajoyib")
+  
       }
       else{
         message.error("Xatolik")
       }
+
     })
     .catch(error=>{
       console.log(error);
     })
   }
+
 
 
     return(
@@ -46,7 +50,7 @@ const CitiesEdit = (cityId,closeModal,refreshData,data,setData) =>{
               <div class="mt-2">
                 <p class="text-sm text-gray-500">Name</p><br/>
                 <input
-                   value={data.name} onChange={(e) => setData({...data, name:e.target.value})}
+                   value={data?.name} onChange={(e) => setData({...data, name:e.target.value})}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     type="text"
                     id="name"
@@ -54,7 +58,7 @@ const CitiesEdit = (cityId,closeModal,refreshData,data,setData) =>{
                 /><br/>
                  <p class="text-sm text-gray-500">Text</p><br/>
                 <input
-                    value={data.text} onChange={(e) => setData({...data, text:e.target.value})}
+                    value={data?.text} onChange={(e) => setData({...data, text:e.target.value})}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     type="text"
                     id="text"

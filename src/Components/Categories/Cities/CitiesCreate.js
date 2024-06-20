@@ -4,10 +4,10 @@ import { message } from "antd";
 
 
  const CitiesCreate = ({closeModal,refreshData}) => {
-
+  const token = localStorage.getItem('accessToken')
     const CreateCity = (e) => {
      e.preventDefault();
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTczNzkzNTUtZDNjYi00NzY1LTgwMGEtNDZhOTU1NWJiOWQyIiwidG9rZW5fdHlwZSI6ImFjY2VzcyIsImlhdCI6MTcxNTAwNjI0OCwiZXhwIjoxNzQ2NTQyMjQ4fQ.uMRbDZduB_z8LXgdTho8kBggg9Zrz6SNCwqmFcas10E';
+     const token = localStorage.getItem('accessToken')
     const name = document.getElementById("name").value;
     const text = document.getElementById("text").value;
     const images = document.getElementById("images").files[0];

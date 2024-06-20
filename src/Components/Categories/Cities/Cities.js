@@ -6,13 +6,14 @@ import CitiesEdit from './CitiesEdit';
 
 export const Cities = () => {
   const [cityData, setCityData] = useState([]);
+  const token = localStorage.getItem('accessToken')
   const [loading, setLoading] = useState(false);
   const imgurl = `https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/`
   const [createopen, setCreateopen] = useState(false);
   const [deleteopen, setDeleteopen] = useState(false);
   const [editopen, setEditopen] = useState(false);
   const [cityId, setCityId] = useState(null);
-  const [data,setData] = useState({name:"name", text:"text", images:"images"})
+  const [data,setData] = useState({name:"", text:"", images:null})
  
 
   const getCityCategory = () =>{
@@ -50,11 +51,11 @@ export const Cities = () => {
   }
 
   const openeditModal = (city) => {
-    setCityId(city.id)
-    setData({...data,name:city.name, text:city.text, images:city.images})
+     setCityId(city?.id)
+    setData({...data,name:city?.name, text:city?.text, images:city?.image_src})
     setEditopen(true)
   }
-  const closeEditModal = () => {
+   const closeEditModal = () => {
     setEditopen(false)
   }
  
@@ -93,8 +94,8 @@ export const Cities = () => {
           {
             loading ? <div className="loading text-2xl ">Loading ...</div> :
             <tbody>
-            {cityData.map((city) => (
-              <tr key={city.id}>
+            {cityData?.map((city) => (
+              <tr key={city?.id}>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   <p className="text-gray-900 whitespace-no-wrap">{city.id}</p>
                 </td>
@@ -125,7 +126,7 @@ export const Cities = () => {
     </div>
   </div>
 </div>
-{deleteopen && <CitiesDelete closeModal={closedeleteModal} cityId={cityId}  refreshData={getCityCategory}/>}
+{deleteopen && <CitiesDelete closeModal={closedeleteModal} cityId={cityId}  refreshData={getCityCategory} />}
 {createopen && <CitiesCreate closeModal={closecreateModal} cityId={cityId}  refreshData={getCityCategory}/>}
 {editopen && <CitiesEdit closeModal={closeEditModal} cityId={cityId} refresh={getCityCategory} data={data} setData={setData} />}
 </div>

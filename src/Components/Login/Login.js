@@ -29,8 +29,9 @@ export const Login = () => {
       }
 
       const data = await response.json();
-      localStorage.setItem('accessToken',23)
-	  console.log(localStorage.getItem('accessToken'))
+      console.log("data", data);
+      localStorage.setItem('accessToken',data?.data?.tokens?.accessToken?.token)
+	    console.log(localStorage.getItem('accessToken',))
 
       navigate("/panel");
     } catch (error) {
