@@ -2,7 +2,7 @@ import { message } from "antd"
 import axios from "axios";
 
 
- const CitiesDelete = ({closeModal,id}) => {
+ const CitiesDelete = ({closeModal,cityId,refreshData}) => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTczNzkzNTUtZDNjYi00NzY1LTgwMGEtNDZhOTU1NWJiOWQyIiwidG9rZW5fdHlwZSI6ImFjY2VzcyIsImlhdCI6MTcxNTAwNjI0OCwiZXhwIjoxNzQ2NTQyMjQ4fQ.uMRbDZduB_z8LXgdTho8kBggg9Zrz6SNCwqmFcas10E';
 
     const deleteCities = (e) =>{
@@ -11,12 +11,14 @@ import axios from "axios";
           Authorization: `Bearer ${token}`,
         }
         axios({
-          url: `https://autoapi.dezinfeksiyatashkent.uz/api/cities/${id}`,
+          url: `https://autoapi.dezinfeksiyatashkent.uz/api/cities/${cityId}`,
           method: 'DELETE',
           headers: headers,
         })
         .then((res)=>{
           message.success("Deleted")
+          refreshData();
+          closeModal();
         })
         .catch((err)=>{
           console.log(err);

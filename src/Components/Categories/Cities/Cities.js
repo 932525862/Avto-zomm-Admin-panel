@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import CitiesCreate from './CitiesCreate'
 import CitiesDelete from './Citiesdelete';
+import CitiesEdit from './CitiesEdit';
 
 export const Cities = () => {
   const [cityData, setCityData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem('accessToken')
   const imgurl = `https://autoapi.dezinfeksiyatashkent.uz/api/uploads/images/`
   const [createopen, setCreateopen] = useState(false);
   const [deleteopen, setDeleteopen] = useState(false);
+  const [editopen, setEditopen] = useState(false);
   const [cityId, setCityId] = useState(null);
+  const [data,setData] = useState({name:"name", text:"text", images:"images"})
+ 
 
   const getCityCategory = () =>{
     setLoading(true)
@@ -45,6 +48,15 @@ export const Cities = () => {
   const closedeleteModal = () => {
     setDeleteopen(false)
   }
+
+  const openeditModal = (city) => {
+    setCityId(city.id)
+    setData({...data,name:city.name, text:city.text, images:city.images})
+    setEditopen(true)
+  }
+  const closeEditModal = () => {
+    setEditopen(false)
+  }
  
 
   return (
@@ -58,7 +70,7 @@ export const Cities = () => {
     </div>
     <div className="overflow-x-auto">
       <div className="min-w-full shadow rounded-lg overflow-hidden">
-        <table className="min-w-full leading-normal  ">
+        <table className="min-w-full leading-normal ">
           <thead>
             <tr>
               <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -96,7 +108,7 @@ export const Cities = () => {
                   <p className="text-gray-900 whitespace-no-wrap"><img className="home__img w-18 h-16" src={`${imgurl}${city.image_src}`} alt="car"/></p>
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <button  className="bg-green-500 text-white px-4 py-2 rounded">
+                  <button  className="bg-green-500 text-white px-4 py-2 rounded" type="submit" onClick={() => openeditModal(city)}>
                     Edit
                   </button>
                   <button  className="bg-red-500 text-white px-4 py-2 rounded ml-2" type="submit" onClick={() => opendeleteModal(city.id)}>
@@ -113,8 +125,9 @@ export const Cities = () => {
     </div>
   </div>
 </div>
-{deleteopen && <CitiesDelete closeModal={closedeleteModal}/>}
-{createopen && <CitiesCreate closeModal={closecreateModal}/>}
+{deleteopen && <CitiesDelete closeModal={closedeleteModal} cityId={cityId}  refreshData={getCityCategory}/>}
+{createopen && <CitiesCreate closeModal={closecreateModal} cityId={cityId}  refreshData={getCityCategory}/>}
+{editopen && <CitiesEdit closeModal={closeEditModal} cityId={cityId} refresh={getCityCategory} data={data} setData={setData} />}
 </div>
   )
 }
