@@ -19,14 +19,15 @@ const CitiesEdit = ({cityId,closeModal,refreshData,data,setData}) =>{
     .then(res=>res.json())
     .then(res=>{
       if(res.success){
-        closeModal();
-        refreshData();
         message.success("Ajoyib")
+        refreshData();
   
       }
       else{
         message.error("Xatolik")
       }
+      closeModal();
+      refreshData();
 
     })
     .catch(error=>{
