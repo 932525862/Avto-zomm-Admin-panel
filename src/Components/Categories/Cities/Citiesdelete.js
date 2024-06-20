@@ -23,6 +23,7 @@ import axios from "axios";
         .catch((err)=>{
           console.log(err);
           message.error("Couldn't delete")
+          closeModal();
         })
       }
 

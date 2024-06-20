@@ -33,7 +33,8 @@ const headers = {
     })
     .catch((err) =>{
         console.log(err);
-        message.err("Xatolik bo'ldi")
+        message.error("Xatolik bo'ldi")
+        closeModal();
     })
 }
 

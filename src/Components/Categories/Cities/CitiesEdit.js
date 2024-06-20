@@ -24,7 +24,6 @@ const CitiesEdit = (cityId,closeModal,refreshData,data,setData) =>{
       }
       else{
         message.error("Xatolik")
-        closeModal();
       }
     })
     .catch(error=>{
