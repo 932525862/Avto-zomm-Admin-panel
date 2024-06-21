@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
@@ -28,11 +28,12 @@ const CarsCreate = ({ closeModal, refreshData }) => {
   const [priceInUsdSale, setPriceInUsdSale] = useState("");
   const [locationId, setLocationId] = useState("");
   const [inclusive, setInclusive] = useState("");
+  const [category, setCategory] = useState([]);
   const [cover, setCover] = useState(null); // Correct initialization for file
-
+  const  token = localStorage.getItem('accessToken');
   const handleSubmit = async (e) => {
+
     e.preventDefault();
-    try {
       const formData = new FormData();
       formData.append("brand_id", brandId);
       formData.append("model_id", modelId);
@@ -58,18 +59,45 @@ const CarsCreate = ({ closeModal, refreshData }) => {
       formData.append("location_id", locationId);
       formData.append("inclusive", inclusive);
       formData.append("cover", cover);
+      await axios({
+        method: "POST",
+        url: "https://autoapi.dezinfeksiyatashkent.uz/api/cars",
+		headers: {
+			Authorization: `Bearer ${token}`,
+		  },
+		data: formData  
+		
+	}).then(res=>{
+		closeModal();
+		refreshData();
+	}).catch (error=>{
+		
+			console.error("Error creating car:", error);
+		  
+	})
 
-      await axios.post(
-        "https://autoapi.dezinfeksiyatashkent.uz/api/cars",
-        formData
-      );
-      closeModal();
-      refreshData();
-    } catch (error) {
-      console.error("Error creating car:", error);
-    }
-  };
+  }
 
+  const getCAtegory = () =>{
+	axios({
+        method: "GET",
+        url: "https://autoapi.dezinfeksiyatashkent.uz/api/categories",
+		headers: {
+			Authorization: `Bearer ${token}`,
+		  },
+		
+	}).then(res=>{
+		setCategory(res.data.data)
+	}).catch (error=>{
+		
+			console.error("Error creating car:", error);
+		  
+	})
+  }
+
+  useEffect(()=>{
+   getCAtegory()
+  },[])
 
   return (
     <div>
@@ -94,13 +122,11 @@ const CarsCreate = ({ closeModal, refreshData }) => {
                   Category
                 </label>
                 <div className="mt-2">
-                  <input
-                    type="text"
-                    value={categoryId}
-                    onChange={(e) => setCategoryId(e.target.value)}
-                    id="first-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
+                 <select>
+					{category && category.map((category,index) =>(
+                    <option>{category.name_en}</option>
+					))}
+				 </select>
                 </div>
               </div>
 
