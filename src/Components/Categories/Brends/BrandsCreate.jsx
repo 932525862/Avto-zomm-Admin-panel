@@ -81,15 +81,16 @@ const BrandsCreate = ({setPostOpen}) => {
               />
             </div>
             <div class="mb-4">
-              <label htmlFor="images" class="block text-gray-700 font-bold mb-2">
-                Images
+                <p class="block text-gray-700 font-bold mb-2">Images</p>
+              <label htmlFor="images" class="shadow  border rounded w-full py-6 px-8 text-gray-700  focus:outline-none focus:shadow-outline">
+                +
               </label>
               <input
                 type="file"
                 id="images"
                 accept="image/*"
                 onChange={handleImagesChange}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="hidden"
               />
             </div>
             <div className="flex justify-end">
