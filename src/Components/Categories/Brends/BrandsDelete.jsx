@@ -14,7 +14,9 @@ const BrandsDelete = ({ setDelOpen, id }) => {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => {
+      .then((res) => {  
+
+        console.log(res?.response);
         toast.success("Successfully deleted!", {
           position: "top-right",
           className: "bg-gray-800 text-white px-4 py-3 rounded-lg shadow-md",
@@ -39,7 +41,6 @@ const BrandsDelete = ({ setDelOpen, id }) => {
 
   return (
     <div>
-      <Toaster />
       <div
         onSubmit={deleteBrandsFunc}
         className="relative z-10"
