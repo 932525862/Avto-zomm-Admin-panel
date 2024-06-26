@@ -2,54 +2,53 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const BrandsEdit = ({ brand, setEditOpen, refreshData }) => {
+export default function ModelsEdit({ brand, setEditOpen, refreshData }) {
   const [title, setTitle] = useState("");
-  const [images, setImages] = useState([]);
+  const [brandTitle, setBrandTitle] = useState([]);
   const token = localStorage.getItem("accessToken");
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleImagesChange = (e) => {
-    setImages(e.target?.files[0]);
+  const brandTitleChange = (e) => {
+    setBrandTitle(e.target.value);
   };
   const BrandsEditFunc = (e) => {
     e.preventDefault();
     console.log(brand);
     console.log(title);
-    console.log(images);
+    console.log(brandTitle);
 
     const formDataEdit = new FormData();
-    formDataEdit.append("name", title); 
-    formDataEdit.append("images", images);
+    formDataEdit.append("name", title);
+    formDataEdit.append("brand_title", brandTitle);
     console.log(formDataEdit);
     axios({
-      url: `https://autoapi.dezinfeksiyatashkent.uz/api/brands/${brand.id}`,
+      url: `https://autoapi.dezinfeksiyatashkent.uz/api/models/${brand.id}`,
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      data: formDataEdit
+      data: formDataEdit,
     })
-    .then((res) => {  
-
-      console.log(res?.response);
-      toast.success("Successfully edited!", {
-        position: "top-right",
-        className: "bg-gray-800 text-white px-4 py-3 rounded-lg shadow-md",
-      });
-      refreshData();
-    })
-    .then(data => console.log(data))
-    .catch((err) => {
-      toast.error("Xatolik!", {
-        position: "top-right",
-        className: "bg-red-800 text-white px-4 py-3 rounded-lg shadow-md",
-      });
-      console.log(err);
-    })
-    .finally(() => {
+      .then((res) => {
+        console.log(res?.response);
+        toast.success("Successfully edited!", {
+          position: "top-right",
+          className: "bg-gray-800 text-white px-4 py-3 rounded-lg shadow-md",
+        });
+        refreshData();
+      })
+      .then((data) => console.log(data))
+      .catch((err) => {
+        toast.error("Xatolik!", {
+          position: "top-right",
+          className: "bg-red-800 text-white px-4 py-3 rounded-lg shadow-md",
+        });
+        console.log(err);
+      })
+      .finally(() => {
         setEditOpen(false);
       });
   };
@@ -67,31 +66,34 @@ const BrandsEdit = ({ brand, setEditOpen, refreshData }) => {
                       htmlFor="title"
                       class="block text-gray-500 text-sm mb-2"
                     >
-                      Title
+                      Model name
                     </label>
                     <input
                       type="text"
                       id="title"
-                    
                       onChange={handleTitleChange}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                   </div>
                   <div class="mb-4">
-                    <p class="block text-gray-500 text-sm mb-12">Images</p>
                     <label
-                      htmlFor="images"
-                      class=" border rounded w-full py-10 px-10 text-gray-700  focus:outline-none focus:shadow-outline"
+                      htmlFor="title"
+                      class="block text-gray-500 text-sm mb-2"
                     >
-                      +
+                      Brand name
                     </label>
-                    <input
-                      type="file"
-                      id="images"
-                      accept="image/*"
-                      class="hidden"
-                      onChange={handleImagesChange}
-                    />
+                    {/* <select
+                      id="title"
+                      onChange={brandTitleChange}
+                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    >
+                      <option value="">Select a brand</option>
+                      {brand.map((brand) => (
+                        <option key={brand.id} value={brand.title}>
+                          {brand.title}
+                        </option>
+                      ))}
+                    </select> */}
                   </div>
                   <div className="flex justify-end mt-16">
                     <button className="  text-gray border  py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline mx-4">
@@ -114,6 +116,4 @@ const BrandsEdit = ({ brand, setEditOpen, refreshData }) => {
       </div>
     </div>
   );
-};
-
-export default BrandsEdit;
+}

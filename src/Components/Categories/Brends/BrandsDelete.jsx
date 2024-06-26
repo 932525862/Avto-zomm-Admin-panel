@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const BrandsDelete = ({ setDelOpen, id }) => {
+const BrandsDelete = ({ setDelOpen, id, refreshData }) => {
   const token = localStorage.getItem("accessToken");
 
   const deleteBrandsFunc = (e) => {
@@ -21,6 +21,7 @@ const BrandsDelete = ({ setDelOpen, id }) => {
           position: "top-right",
           className: "bg-gray-800 text-white px-4 py-3 rounded-lg shadow-md",
         });
+        refreshData();
       })
       .catch((err) => {
         toast.error("Error deleting item", {

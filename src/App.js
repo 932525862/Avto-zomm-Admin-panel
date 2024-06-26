@@ -4,10 +4,10 @@ import { Dashboarda } from './Components/Dashboard/Dashboard';
 import  Brends  from './Components/Categories/Brends/Brends';
 import  Cars  from './Components/Categories/Cars/Cars';
 import { Cities } from './Components/Categories/Cities/Cities';
-import { Models } from './Components/Categories/Models/Models';
 import {Settings} from "./Components/Categories/Settings/Settings"
 import { Login } from './Components/Login/Login'; 
 import { Toaster } from 'react-hot-toast';
+import Models from './Components/Categories/Models/Models';
 
 
 function App() {

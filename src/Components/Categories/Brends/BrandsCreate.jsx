@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-const BrandsCreate = ({ setPostOpen }) => {
+const BrandsCreate = ({ setPostOpen, refreshData }) => {
   const [title, setTitle] = useState("");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -42,6 +42,7 @@ const BrandsCreate = ({ setPostOpen }) => {
       });
       setTitle("");
       setImages([]);
+      refreshData();
     } catch (err) {
       toast.error("Error adding brand", {
         position: "top-right",

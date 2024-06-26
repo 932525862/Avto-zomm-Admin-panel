@@ -16,6 +16,24 @@ function Brands() {
   const [brand, setBrand] = useState();
   const token = localStorage.getItem("accessToken");
 
+  const getBrands = () =>{
+    setLoading(true)
+    axios({
+      url:'https://autoapi.dezinfeksiyatashkent.uz/api/brands',
+      method:`GET`,
+    })
+    .then((res) =>{
+      setBrands(res.data.data)
+      setLoading(false)
+    })
+    .catch((err) =>{
+      console.log(err);
+    } )
+  }
+  useEffect(() =>{
+    getBrands()
+  },[])
+
   useEffect(() => {
     fetchBrands();
   }, []);
@@ -118,9 +136,9 @@ function Brands() {
           </table>
         </div>
       )}
-      {delOpen && <BrandsDelete id={id} setDelOpen = {setDelOpen}/>}
-      {editOpen && <BrandsEdit brand={brand} setEditOpen={setEditOpen} />}
-      {postOpen && <BrandsCreate setPostOpen={setPostOpen}/>}
+      {delOpen && <BrandsDelete id={id} setDelOpen = {setDelOpen} refreshData={getBrands}/>}
+      {editOpen && <BrandsEdit brand={brand} setEditOpen={setEditOpen} refreshData={getBrands}/>}
+      {postOpen && <BrandsCreate setPostOpen={setPostOpen} refreshData={getBrands}/>}
     </div>
   );
 }
