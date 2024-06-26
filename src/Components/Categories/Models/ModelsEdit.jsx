@@ -1,11 +1,29 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function ModelsEdit({ brand, setEditOpen, refreshData }) {
   const [title, setTitle] = useState("");
   const [brandTitle, setBrandTitle] = useState([]);
+  const [options, setOptions] = useState([]);
   const token = localStorage.getItem("accessToken");
+
+  const getBrands = () => {
+    axios({
+      url: "https://autoapi.dezinfeksiyatashkent.uz/api/brands",
+      method: `GET`,
+    })
+      .then((res) => {
+        setOptions(res.data.data);
+       
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getBrands();
+  });
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -16,9 +34,7 @@ export default function ModelsEdit({ brand, setEditOpen, refreshData }) {
   };
   const BrandsEditFunc = (e) => {
     e.preventDefault();
-    console.log(brand);
-    console.log(title);
-    console.log(brandTitle);
+    
 
     const formDataEdit = new FormData();
     formDataEdit.append("name", title);
@@ -82,18 +98,16 @@ export default function ModelsEdit({ brand, setEditOpen, refreshData }) {
                     >
                       Brand name
                     </label>
-                    {/* <select
+                    <select
                       id="title"
                       onChange={brandTitleChange}
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     >
                       <option value="">Select a brand</option>
-                      {brand.map((brand) => (
-                        <option key={brand.id} value={brand.title}>
-                          {brand.title}
-                        </option>
+                      {options.map((option) => (
+                        <option key={option.id}>{option.title}</option>
                       ))}
-                    </select> */}
+                    </select>
                   </div>
                   <div className="flex justify-end mt-16">
                     <button className="  text-gray border  py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline mx-4">
